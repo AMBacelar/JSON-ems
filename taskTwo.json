@@ -11,7 +11,7 @@
 		"type": "DataCapture",
 		"attrs": {
 			"timeOut": {
-				"delay": "60000",
+				"delay": 10,
 				"redirect": "H"
 			},
 			"questions": [{

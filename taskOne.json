@@ -1,0 +1,77 @@
+[{
+		"id": "A",
+		"type": "GuestList",
+		"next": "B"
+	},
+	{
+		"id": "B",
+		"type": "DataCapture",
+		"attrs": {
+			"brandingImage": "http://example.com/image.png",
+			"style": {
+				"textColour": "#434324",
+				"backgroundColour": "#ea42dd"
+			},
+			"questions": [{
+				"id": "email",
+				"label": "email",
+				"type": "text"
+			}]
+		},
+		"next": "C"
+	},
+	{
+		"id": "C",
+		"type": "DataCapture",
+		"attrs": {
+			"brandingImage": "http://example.com/image.png",
+			"style": {
+				"textColour": "#434324",
+				"backgroundColour": "#ea42dd"
+			},
+			"questions": [{
+					"id": "postCode",
+					"label": "post Code",
+					"type": "text"
+				},
+				{
+					"id": "optIn",
+					"label": "May we send you emails?",
+					"type": "checkbox"
+				},
+				{
+					"id": "customerID",
+					"label": "customerID",
+					"type": "text"
+				}
+			]
+		},
+		"next": "D"
+	},
+	{
+		"id": "D",
+		"type": "MailDispatch",
+		"attrs": {
+			"templateName": "registrationEmail",
+			"requireOptIn": "true"
+		},
+		"next": "E"
+	},
+	{
+		"id": "E",
+		"type": "Thanks",
+		"attrs": {
+			"message": "thanks for signing up"
+		},
+		"next": "X"
+	},
+	{
+		"id": "X",
+		"type": "Save",
+		"next": "F"
+	},
+	{
+		"id": "F",
+		"type": "Reset"
+	}
+]

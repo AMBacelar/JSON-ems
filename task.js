@@ -67,8 +67,6 @@
 		
 		var index = url.split('#')[1].trim();
 		
-		console.log(dataCaptured);
-		
 		for (var i = 0; i < pages.length; i++) {
 			if(pages[i].id == index) {
 				currPage = i;
@@ -76,7 +74,6 @@
 				console.log(desiredPageType);
 			}
 		}
-		console.log(pages[currPage].id);
 
 		var map = {
 			
@@ -106,19 +103,14 @@
 						dataCaptured.isWinner = true;
 						dataCaptured.voucherCode = code;
 					}
-					console.log(dataCaptured);
+					window.location.hash = pages[currPage].next;
 				});
-				// DO STUFF THEN GO NEXT
-				window.location.hash = pages[currPage].next;
 			},
 			'Conditional': function() {
 				console.log("Conditional");
 				// DO STUFF THEN GO NEXT
 				
-				console.log(pages[currPage].checks.conditionalA[0]);
 				var conditional = pages[currPage].checks.conditionalA[0];
-				
-				console.log(dataCaptured);
 				
 				console.log(dataCaptured[conditional] + " has to equal " + pages[currPage].checks.equalTo);
 				
@@ -128,7 +120,6 @@
 				
 				function emailCallback(a) {
 						if(a) {
-							console.log(a);
 							dataCaptured.sentEmail = true;
 						} else {
 						dataCaptured.sentEmail = false;
@@ -140,16 +131,11 @@
 				
 				if(pages[currPage].attrs.requireOptIn == "true") {
 					if(dataCaptured.optIn == true) {
-						console.log("API call please.");
 						window.AkkrooAPI.sendEmail(dataCaptured.email, pages[currPage].attrs.templateName,dataCaptured, emailCallback);
 					} 
 				} else {
-					console.log("API call please.");
 					window.AkkrooAPI.sendEmail(dataCaptured.email, pages[currPage].attrs.templateName,dataCaptured, emailCallback);
 				}	
-				
-				
-				console.log(dataCaptured);
 
 				// DO STUFF THEN GO NEXT
 				window.location.hash = pages[currPage].next;
@@ -168,11 +154,6 @@
 				for(key in dataCaptured) {
 					console.log(key + ':' + dataCaptured[key]);
 				}
-				// try {
-				// 	window.taskOne.validate(pages[currPage].id, dataCaptured);
-				// } catch (e) {
-				// 	console.error(e);
-				// }
 				window.location.hash = pages[currPage].next;
 
 				// DO STUFF THEN GO NEXT
@@ -228,7 +209,6 @@
 		}
 		$( "li" ).click(function() {
 				dataCaptured.name = $( this ).text();
-				console.log(index);
 				container.empty();
 				window.location.hash = pages[currPage].next;
 			});
@@ -273,6 +253,7 @@
 		// Find the wanted page by iterating the data object and searching for the chosen index.
 		if(data.length){
 			data.forEach(function (item) {
+				
 				if(item.id == index){
 					
 					for(var i = 0; i < item.attrs.questions.length; i++) {
@@ -289,7 +270,6 @@
 								}));
 							}
 							container.after("</select>");
-							console.log($('#data-capture').HTML);
 							
 						} else if(item.attrs.questions[i].id == "customerID") {
 							container.append('<label>'+item.attrs.questions[i].id+'</label>');
@@ -307,7 +287,6 @@
 					
 					var inputFields = $( ":input");
 					for(var x = 0; x < inputFields.length; x++) {
-						// console.log(inputFields[x].name);
 						var temp = inputFields[x].name;
 						for(var key in dataCaptured) {
 							if(key == temp){
@@ -319,9 +298,7 @@
 					container.append('<button type="submit" class="submit">Submit</button>');
 					
 					$( "form" ).submit(function( event ) {
-					  console.log("submit pressed");
 					  var formContents = $(this).formToArray();
-					  console.log(formContents);
 					  event.preventDefault();
 					  
 						if(formContents){
@@ -330,13 +307,32 @@
 							    dataCaptured[item.name] = item.value;
 							    if(item.value == "true") {
 							    	dataCaptured[item.name] = true;
-							    	console.log(dataCaptured[item.name]);
 							    }
 							}
 						}
 						container.empty();
 						window.location.hash = pages[currPage].next;
 					});
+					if(item.attrs.timeOut){
+						var whatPage = pages[currPage];
+						var t = item.attrs.timeOut.delay;
+						function onTimer() {
+							if(whatPage == pages[currPage]) {
+								t--;
+							}
+							if(t < -1) {
+								t = -1;
+							}
+							if (t < 0 ) {
+								console.log("I should reset here");
+								container.empty();
+								initialize();
+							} else {
+								setTimeout(onTimer, 1000);
+							}
+						}
+						onTimer();
+					}
 				}
 			});
 		}
@@ -380,15 +376,6 @@
 	
 	
 	window.onload = function() {
-		// open task_1_validator.js, task_2_validator.js and akkroo_api.js to understand the below:
-
-		// this is how you would call the 'APIs'
-		console.log('Demonstrating call to example APIs:');
-		window.AkkrooAPI.generateVoucherCode('Alan Adams', function(code) {
-			console.log('Example voucher code: ', code);
-		});
-
-		// run your tasks
 		
 		initialize();
 		taskTwo();
