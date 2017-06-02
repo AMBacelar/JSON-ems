@@ -1,0 +1,104 @@
+[{
+		"id": "A",
+		"type": "Branding",
+		"attrs": {
+			"brandingImage": "https://assets.akkroo.com/marketing/img/akkroo-logo.svg"
+				},
+		"next": "B"
+	},
+	{
+		"id": "B",
+		"type": "DataCapture",
+		"attrs": {
+			"timeOut": {
+				"delay": "60000",
+				"redirect": "H"
+			},
+			"questions": [{
+				"id": "name",
+				"label": "name",
+				"type": "text"
+			}]
+		},
+		"next": "C"
+	},
+	{
+		"id": "C",
+		"type": "InstantWinner",
+		"next": "D"
+	},
+	{
+		"id": "D",
+		"type": "Conditional",
+		"checks": {
+			"conditionalA": [
+				"isWinner"
+			],
+			"equalTo": true,
+			"then": "E",
+			"else": "I"
+		}
+	},
+	{
+		"id": "E",
+		"type": "DataCapture",
+		"attrs" : {
+			"questions" : [
+				{
+					"id" : "email",
+					"type" : "text"
+				},
+				{
+					"id" : "preferredPrize",
+					"type" : "select",
+					"options" : [
+						"MacBook Pro",
+						"Microsoft Surface Pro 4",
+						"Wacom Cintiq Companion",
+						"Iphone 7S Plus 256GB",
+						"Marvel vs Capcom: Infinite"
+					]
+				}
+			]
+		},
+		"next": "F"
+	},
+	{
+		"id": "F",
+		"type": "MailDispatch",
+		"attrs": {
+			"templateName": "voucherCodeEmail",
+			"requireOptIn": "false"
+		},
+		"next": "G"
+	},
+	{
+		"id": "G",
+		"type": "Thanks",
+		"attrs": {
+			"message": "thanks for signing up"
+		},
+		"next": "X"
+	},
+	{
+		"id": "I",
+		"type": "DataCapture",
+		"attrs": {
+			"questions": [{
+				"id": "email",
+				"label": "email",
+				"type": "text"
+			}]
+		},
+		"next": "G"
+	},
+	{
+		"id": "X",
+		"type": "Save",
+		"next": "H"
+	},
+	{
+		"id": "H",
+		"type": "Reset"
+	}
+]
