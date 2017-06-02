@@ -45,7 +45,7 @@
 				return cb(null);
 			} else if (name === 'Alan Adams') {
 				var getRand = function() {
-					return cb('8hgskidjhyejdnh7');
+					return '8hgskidjhyejdnh7';
 				};
 				var voucher = getRand();
 				console.log('New voucher code generated for ' + name + ': '+ voucher);

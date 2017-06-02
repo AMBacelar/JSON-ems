@@ -97,14 +97,16 @@
 			'InstantWinner': function() {
 				
 				console.log("Instant Win");
-
 				// Get the index of which page we want to show and call the appropriate function.
 				window.AkkrooAPI.generateVoucherCode(dataCaptured.name, function(code) {
 					console.log('Example voucher code: ', code);
-					if(code != null) {
+					if(code == null) {
+						dataCaptured.isWinner = false;
+					} else {
 						dataCaptured.isWinner = true;
 						dataCaptured.voucherCode = code;
 					}
+					console.log(dataCaptured);
 				});
 				// DO STUFF THEN GO NEXT
 				window.location.hash = pages[currPage].next;
@@ -115,6 +117,8 @@
 				
 				console.log(pages[currPage].checks.conditionalA[0]);
 				var conditional = pages[currPage].checks.conditionalA[0];
+				
+				console.log(dataCaptured);
 				
 				console.log(dataCaptured[conditional] + " has to equal " + pages[currPage].checks.equalTo);
 				
