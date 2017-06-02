@@ -13,15 +13,6 @@
 	var currPage = 0;
 	
 	
-	
-	// getting the data for a test view of this SPA
-	$.getJSON( "taskTwo.json", function( data ) {
-		// Write the data into our global variable.
-		pages = data;
-		// Manually trigger a hashchange to start the app.
-		$(window).trigger('hashchange');
-	});
-	
 	function initialize() {
 		var guestListData = [
 			{
@@ -43,10 +34,6 @@
 
 		// write your code for task one here...
 	}
-
-	function taskTwo() {
-		// write your code for task two here...
-	}
 	
 	$(window).on('hashchange', function(){
 		// On every hash change the render function is called with the new hash.
@@ -63,7 +50,7 @@
 		var temp = url.split('/')[0];
 
 		// Hide whatever page is currently shown.
-		$('.main-content .page').removeClass('visible');
+		$('.page').removeClass('visible');
 		
 		var index = url.split('#')[1].trim();
 		
@@ -376,9 +363,28 @@
 	
 	
 	window.onload = function() {
-		
 		initialize();
-		taskTwo();
+		$("button[name='taskOneStarter']").click(function() {
+			console.log($(this).val());
+			// getting the data for a test view of this SPA
+			$.getJSON( $(this).val(), function( data ) {
+				// Write the data into our global variable.
+				pages = data;
+				// Manually trigger a hashchange to start the app.
+				$(window).trigger('hashchange');
+			});
+		});
+		
+		$("button[name='taskTwoStarter']").click(function() {
+			console.log($(this).val());
+			// getting the data for a test view of this SPA
+			$.getJSON( $(this).val(), function( data ) {
+				// Write the data into our global variable.
+				pages = data;
+				// Manually trigger a hashchange to start the app.
+				$(window).trigger('hashchange');
+			});
+		});
 	};
 
 }(window, document));

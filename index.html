@@ -25,6 +25,7 @@
 
      section {
        max-width: 50em;
+       border: 1px solid #ddd;
      }
 
      .akkroo-note {
@@ -36,92 +37,102 @@
 
      .task {
        margin-bottom: 6em;
-       border-bottom: 1px solid #ddd;
        min-height: 4em;
        padding: 1em;
      }
 
-     #view-examples {
+     #task {
        margin-top: 5em;
      }
 
-     #view-examples .view-example {
+     #task .view-example {
        margin-bottom: 3em;
      }
 
-     #view-examples #example-guest-list-view {
+     #task #guest-list-view {
+       max-width: 25em;
+     }
+     
+     #task .guest-list .visible {
        padding: 1em;
        border: 1px solid #999;
        max-width: 25em;
      }
-     #view-examples .guest-list {
+     
+     #task #guest-list {
        background-color: #eee;
      }
-     #view-examples .guest-list li {
+     #task .guest-list li {
        list-style-type: none;
        border-bottom: 1px solid #ddd;
        height: 2em;
        line-height: 2em;
        padding-left: 1em;
      }
-     #view-examples .guest-list li:hover {
+     #task .guest-list li:hover {
        background-color: #ddd;
        color: #3366FF;
        cursor: pointer;
      }
-     #view-examples .guest-list li:first-child {
+     #task .guest-list li:first-child {
        border-top: 1px solid #ddd;
      }
 
-     #view-examples fieldset {
+     #task fieldset {
        border: none;
        margin-bottom: 1em;
      }
-     #view-examples fieldset label,
-     #view-examples fieldset input {
+     #task label,
+     #task input {
        display: block;
        margin-bottom: 0.4em;
      }
 
-     #view-examples button,
-     #view-examples fieldset input[type="text"],
-     #view-examples fieldset input[type="email"] {
+     #task button,
+     #task input[type="text"],
+     #task input[type="email"] {
        font-size: 100%;
        font-family: "Helvetica Neue", sans-serif;
      }
 
-     #view-examples fieldset input[type="text"],
-     #view-examples fieldset input[type="email"] {
+     #task input[type="text"],
+     #task input[type="email"] {
        padding: 0.4em 0.6em;
      }
-     #view-examples button {
+     #task button {
        border: none;
        padding: 0.4em 0.8em;
        background-color: #009933;
        color: #fff;
      }
-     #view-examples button:hover {
+     #task button:hover {
        cursor: pointer;
        background-color: #007A29;
      }
     </style>
   </head>
   <body>
-    <h3>Tasks</h3>
+    <h1>Tasks</h1>
+    
+    <button name="taskOneStarter" value="taskOne.json">task one</button>
+    <button name="taskTwoStarter" value="taskTwo.json">task two</button>
+    
+    <h3>please refresh page, to switch between the two tasks</h3>
+    
     <section>
       <h4>Task one:</h4>
-      <div class="task" id="task-one">
+      <div class="task" id="task">
           
           
-        <div class="akkroo-note">
-          <span>Please render your UI for task one here.</span>
-        </div>
-        <div id="injectionTest">
+        <!--<div class="akkroo-note">-->
+        <!--  <span>Please render your UI for task one here.</span>-->
+        <!--</div>-->
+        <div class="main-content">
             
             <!--Branding Template-->
             
-            <div class="branding">
-                <h4>Branding</h4>
+            <div class="branding page">
+                
                 <div id="branding">
                     
                 </div>
@@ -129,21 +140,23 @@
             
             <!--Guest List Template-->
             
-            <div class="guest-list">
-                <h4>Guest List</h4>
+            <div class="guest-list page">
+                
                 <div id="guest-list-view">
-                  <h4>Please select your name from the list</h4>
+                  
                   <ul id="guest-list">
                   </ul>
+                  
                 </div>
-              </div>
+                
+             </div>
               
               <!--Data Capture Template-->
               
-                <div class="data-capture">
-                  <h4>Data Capture Form</h4>
+                <div class="data-capture page">
+                  
                     <div>
-                      <h4>Please enter your details</h4>
+                      
                       <form id="data-capture">
                         
             
@@ -154,8 +167,8 @@
                 
                 <!--Thanks Template-->
             
-                <div class="thanks">
-                    <h4>Thanks</h4>
+                <div class="thanks page">
+                    
                     <div id="thanks">
                         
                     </div>
