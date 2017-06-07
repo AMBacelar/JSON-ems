@@ -82,7 +82,7 @@
 				
 				console.log("Instant Win");
 				// Get the index of which page we want to show and call the appropriate function.
-				window.AkkrooAPI.generateVoucherCode(dataCaptured.name, function(code) {
+				window.MiscAPI.generateVoucherCode(dataCaptured.name, function(code) {
 					console.log('Example voucher code: ', code);
 					if(code == null) {
 						dataCaptured.isWinner = false;
@@ -118,10 +118,10 @@
 				
 				if(pages[currPage].attrs.requireOptIn == "true") {
 					if(dataCaptured.optIn == true) {
-						window.AkkrooAPI.sendEmail(dataCaptured.email, pages[currPage].attrs.templateName,dataCaptured, emailCallback);
+						window.MiscAPI.sendEmail(dataCaptured.email, pages[currPage].attrs.templateName,dataCaptured, emailCallback);
 					} 
 				} else {
-					window.AkkrooAPI.sendEmail(dataCaptured.email, pages[currPage].attrs.templateName,dataCaptured, emailCallback);
+					window.MiscAPI.sendEmail(dataCaptured.email, pages[currPage].attrs.templateName,dataCaptured, emailCallback);
 				}	
 
 				// DO STUFF THEN GO NEXT

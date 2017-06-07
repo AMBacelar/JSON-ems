@@ -54,7 +54,7 @@
 		}, 1);
 	}
 
-	window.AkkrooAPI = {};
-	window.AkkrooAPI.sendEmail = sendEmail;
-	window.AkkrooAPI.generateVoucherCode = generateVoucherCode;
+	window.MiscAPI = {};
+	window.MiscAPI.sendEmail = sendEmail;
+	window.MiscAPI.generateVoucherCode = generateVoucherCode;
 }(window));
